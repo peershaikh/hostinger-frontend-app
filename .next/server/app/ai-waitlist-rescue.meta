@@ -1,0 +1,35 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/ai-waitlist-rescue/layout,_N_T_/ai-waitlist-rescue/page,_N_T_/ai-waitlist-rescue"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/ai-waitlist-rescue/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/7078b5449fcfa764ad3916e8f5fb68cb55e4639ec31ccc1dfa8907fef4cb1964/$/ai-waitlist-rescue",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/ai-waitlist-rescue/page"
+    },
+    "isFallback": false
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/logs/layout,_N_T_/admin/logs/page,_N_T_/admin/logs"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/admin/logs/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 160,
+                "slots": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/13d0b04d1ab71e5ef9e4ec0b3ab4f810f3788a4d13d1c5a8c7b38c323d72e72a/$/admin/logs",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/admin/logs/page"
+    },
+    "isFallback": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/rate-list/layout,_N_T_/rate-list/page,_N_T_/rate-list"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/rate-list/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/6f64e8b8ad9dfb77b111018d95c4f4668b9cd763c098194cb73e7e0acbee8ab2/$/rate-list",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/rate-list/page"
+    },
+    "isFallback": false
+  }
+}

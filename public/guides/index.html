@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trayago — Same-Train Rescue Feature Guide (12 Nov 2026)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&family=JetBrains+Mono:wght@600;700;800;900&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #030712;
+      --card-bg: rgba(15, 23, 42, 0.95);
+      --cyan: #06b6d4;
+      --cyan-glow: rgba(6, 182, 212, 0.45);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.45);
+      --rose: #ef4444;
+      --rose-glow: rgba(239, 68, 68, 0.45);
+      --text: #f8fafc;
+      --text-dim: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+
+    body {
+      background: #000208;
+      color: var(--text);
+      font-family: 'Outfit', -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+
+    /* Player Shell */
+    .player-shell {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 9 / 16;
+      background: var(--bg);
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: 0 30px 100px -15px rgba(0, 0, 0, 0.95),
+                  0 0 0 1px rgba(255, 255, 255, 0.1),
+                  0 0 70px -15px rgba(6, 182, 212, 0.35);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .top-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      background: linear-gradient(180deg, rgba(3, 7, 18, 0.98) 0%, transparent 100%);
+      z-index: 50;
+    }
+
+    .brand {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #38bdf8, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-pill {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(6, 182, 212, 0.15);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      color: #67e8f9;
+    }
+
+    /* Voice Switcher */
+    .voice-switch {
+      display: flex;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 2px;
+      gap: 2px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .voice-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .voice-btn.active {
+      background: var(--cyan);
+      color: #000;
+    }
+
+    /* Main Stage */
+    .stage {
+      position: absolute;
+      top: 65px;
+      left: 16px;
+      right: 16px;
+      bottom: 120px;
+      display: flex;
+      flex-direction: column;
+      justifyContent: center;
+      z-index: 30;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .card.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Subtitles Safe Zone */
+    .subtitle-box {
+      position: absolute;
+      bottom: 58px;
+      left: 14px;
+      right: 14px;
+      background: rgba(2, 6, 23, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 18px;
+      padding: 12px 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+      z-index: 45;
+    }
+
+    .sub-head {
+      font-size: 11px;
+      font-weight: 900;
+      color: #38bdf8;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .sub-text {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #f8fafc;
+    }
+
+    /* Controls Bar */
+    .controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: linear-gradient(0deg, rgba(3, 7, 18, 0.98) 0%, transparent 100%);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+      z-index: 60;
+    }
+
+    .play-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--cyan);
+      border: none;
+      color: #000;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+      box-shadow: 0 0 15px var(--cyan-glow);
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      position: relative;
+      cursor: pointer;
+    }
+    .progress-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      background: linear-gradient(90deg, #06b6d4, #10b981);
+      border-radius: 6px;
+    }
+    .time-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--text-dim);
+    }
+
+    /* Outer download bar */
+    .outer-actions {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .dl-btn {
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .dl-btn:hover {
+      background: #334155;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="player-shell">
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="brand">
+        <span>⚡ TRAYAGO<span style="color:#06b6d4">.IN</span></span>
+      </div>
+      <div class="badge-pill">SAME-TRAIN RESCUE</div>
+      <div class="voice-switch">
+        <button class="voice-btn active" id="btnMale" onclick="switchVoice('male')">👨 Male</button>
+        <button class="voice-btn" id="btnFemale" onclick="switchVoice('female')">👩 Female</button>
+      </div>
+    </div>
+
+    <!-- Main Stage Screens -->
+    <div class="stage">
+      <!-- Scene 1: Hook / Waiting List on 12 Nov -->
+      <div class="card active" id="cardScene1" style="border: 2px solid rgba(239, 68, 68, 0.6);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:12px; font-weight:900; color:#fca5a5; letter-spacing:1px;">🎟️ DIRECT ROUTE SEARCH</span>
+          <span style="background:#dc2626; color:#fff; font-size:10px; font-weight:900; padding:2px 8px; border-radius:10px;">HEAVY WAITING</span>
+        </div>
+        <div style="background:rgba(2,6,23,0.85); padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,0.08);">
+          <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:8px;">
+            <span style="color:#94a3b8;">📅 DATE: <strong style="color:#38bdf8;">Thu, 12 Nov 2026</strong></span>
+            <span style="color:#38bdf8; font-weight:800;">Class: Sleeper (SL)</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-size:18px; font-weight:900;">Vasai Road</div>
+              <div style="font-size:11px; color:#64748b;">BSR • 16:05</div>
+            </div>
+            <div style="color:#ef4444; font-size:18px;">➔</div>
+            <div style="text-align:right;">
+              <div style="font-size:18px; font-weight:900;">H. Nizamuddin</div>
+              <div style="font-size:11px; color:#64748b;">NZM • 09:30</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:rgba(30,41,59,0.7); padding:12px 14px; border-radius:14px; display:flex; justify-content:space-between; align-items:center; border:1px solid rgba(239,68,68,0.3);">
+          <div>
+            <div style="font-size:14px; font-weight:800;">04001 DDR NZM SF SPL</div>
+            <div style="font-size:11px; color:#94a3b8;">Direct Journey • 17h 25m</div>
+          </div>
+          <div style="background:rgba(239,68,68,0.25); border:1px solid #ef4444; padding:6px 12px; border-radius:10px; text-align:center;">
+            <div style="font-size:16px; font-weight:900; color:#f87171;">WL 48</div>
+            <div style="font-size:8px; font-weight:800; color:#fca5a5;">REGRET</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 2: Magic Button -->
+      <div class="card" id="cardScene2" style="border: 2px solid rgba(6, 182, 212, 0.6); text-align:center;">
+        <div style="font-size:12px; font-weight:800; color:#38bdf8;">TRAYAGO ROUTE DISCOVERY</div>
+        <div style="background:linear-gradient(135deg, #0284c7, #06b6d4); padding:20px; border-radius:18px; box-shadow:0 0 30px rgba(6,182,212,0.5);">
+          <div style="font-size:28px; margin-bottom:6px;">⚡</div>
+          <div style="font-size:18px; font-weight:900;">CHECK SAME-TRAIN RESCUE</div>
+          <div style="font-size:11px; color:#e0f2fe; margin-top:4px;">Tap to find intermediate vacant berths</div>
+        </div>
+        <div style="background:rgba(2,6,23,0.85); padding:10px; border-radius:12px; font-size:12px; color:#bae6fd; font-weight:800;">
+          🔄 AI Scanning Vadodara & Intermediate Quotas...
+        </div>
+      </div>
+
+      <!-- Scene 3: Same Train Switch Card -->
+      <div class="card" id="cardScene3" style="border: 2px solid rgba(16, 185, 129, 0.7);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:11px; font-weight:900; color:#6ee7b7; background:rgba(16,185,129,0.2); padding:3px 10px; border-radius:12px;">✨ SAME-TRAIN RESCUE FOUND</span>
+          <span style="background:#10b981; color:#022c22; font-size:10px; font-weight:900; padding:3px 8px; border-radius:8px;">100% SAME TRAIN</span>
+        </div>
+        <div style="background:rgba(2,6,23,0.85); padding:10px 12px; border-radius:12px; border:1px solid rgba(52,211,153,0.3); font-size:11px; color:#34d399; font-weight:800;">
+          🔄 Stay onboard at Vadodara Jn! Switch berth during 10-min stop.
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="background:rgba(30,41,59,0.7); padding:10px 12px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; border:1px solid rgba(16,185,129,0.3);">
+            <div>
+              <div style="font-size:10px; color:#94a3b8;">LEG 1 • Vasai Road ➔ Vadodara</div>
+              <div style="font-size:13px; font-weight:900;">Coach S3 • Berth 24 (SL)</div>
+            </div>
+            <div style="background:#10b981; color:#064e3b; padding:4px 8px; border-radius:8px; font-size:10px; font-weight:900;">CONFIRMED</div>
+          </div>
+          <div style="background:rgba(30,41,59,0.7); padding:10px 12px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; border:1px solid rgba(16,185,129,0.3);">
+            <div>
+              <div style="font-size:10px; color:#94a3b8;">LEG 2 • Vadodara ➔ H. Nizamuddin</div>
+              <div style="font-size:13px; font-weight:900;">Coach S5 • Berth 58 (SL)</div>
+            </div>
+            <div style="background:#10b981; color:#064e3b; padding:4px 8px; border-radius:8px; font-size:10px; font-weight:900;">CONFIRMED</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 4: Smart Value & Confirmation Meter -->
+      <div class="card" id="cardScene4" style="border: 2px solid rgba(59, 130, 246, 0.7); text-align:center;">
+        <div style="font-size:11px; font-weight:800; color:#60a5fa;">TRANSPARENT POSITIONING</div>
+        <div style="font-size:16px; font-weight:900;">Not a Ticket Broker.</div>
+        <div style="font-size:13px; color:#93c5fd; font-weight:700;">Smart Train Route Discovery Engine.</div>
+        <div style="background:rgba(2,6,23,0.85); padding:16px; border-radius:16px; border:1px solid rgba(59,130,246,0.4);">
+          <div style="font-size:10px; color:#94a3b8; font-weight:800;">HISTORICAL CONFIRMATION METRIC</div>
+          <div style="font-size:42px; font-weight:900; color:#38bdf8;">90%</div>
+          <div style="font-size:12px; color:#4ade80; font-weight:800;">HIGH CONFIRMATION CHANCE</div>
+        </div>
+      </div>
+
+      <!-- Scene 5: 2-Step CTA -->
+      <div class="card" id="cardScene5" style="border: 2px solid rgba(6, 182, 212, 0.7);">
+        <div style="text-align:center;">
+          <div style="font-size:11px; font-weight:900; color:#38bdf8;">HOW TO USE TRAYAGO</div>
+          <div style="font-size:18px; font-weight:900;">The 2-Step Safe Flow</div>
+        </div>
+        <div style="background:rgba(6,182,212,0.15); border:1px solid #06b6d4; padding:10px 14px; border-radius:12px; display:flex; align-items:center; gap:10px;">
+          <div style="width:24px; height:24px; border-radius:50%; background:#06b6d4; color:#000; font-weight:900; display:flex; align-items:center; justify-content:center; font-size:12px;">1</div>
+          <div>
+            <div style="font-size:13px; font-weight:900;">Search on Trayago.in</div>
+            <div style="font-size:10px; color:#67e8f9;">Discover intermediate vacant seats & split</div>
+          </div>
+        </div>
+        <div style="background:rgba(16,185,129,0.15); border:1px solid #10b981; padding:10px 14px; border-radius:12px; display:flex; align-items:center; gap:10px;">
+          <div style="width:24px; height:24px; border-radius:50%; background:#10b981; color:#000; font-weight:900; display:flex; align-items:center; justify-content:center; font-size:12px;">2</div>
+          <div>
+            <div style="font-size:13px; font-weight:900;">Book on Official App</div>
+            <div style="font-size:10px; color:#86efac;">Official standard fares • Zero agent fee</div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(90deg, #0284c7, #06b6d4); padding:10px; border-radius:12px; text-align:center; font-size:13px; font-weight:900;">
+          VISIT TRAYAGO.IN TODAY 🔗
+        </div>
+      </div>
+    </div>
+
+    <!-- Subtitles Box -->
+    <div class="subtitle-box">
+      <div class="sub-head" id="subHead">12 NOVEMBER WAITING LIST?</div>
+      <div class="sub-text" id="subText">12 November ko train se travel karna hai aur direct train mein lambi waiting list mil rahi hai? Pareshan hokar apna trip cancel mat kijiye!</div>
+    </div>
+
+    <!-- Bottom Controls -->
+    <div class="controls">
+      <button class="play-btn" id="btnPlay" onclick="togglePlay()">▶</button>
+      <div class="progress-bar" id="progressBar" onclick="seek(event)">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="time-lbl" id="timeLbl">0:00 / 1:01</div>
+    </div>
+  </div>
+
+  <!-- Outer Action Bar -->
+  <div class="outer-actions">
+    <a href="../trayago_same_train_rescue_nov12.mp4" download class="dl-btn">
+      📥 Download 1080x1920 MP4 Video
+    </a>
+  </div>
+
+  <!-- Audio Element -->
+  <audio id="audioVoice" src="../audio/nov12_rescue/master_voiceover_male.mp3" preload="auto"></audio>
+  <audio id="audioBg" src="../remotion-studio/public/bg_music.mp3" preload="auto" loop></audio>
+
+  <script>
+    const audioVoice = document.getElementById('audioVoice');
+    const audioBg = document.getElementById('audioBg');
+    audioBg.volume = 0.12;
+
+    const btnPlay = document.getElementById('btnPlay');
+    const progressFill = document.getElementById('progressFill');
+    const timeLbl = document.getElementById('timeLbl');
+    const subHead = document.getElementById('subHead');
+    const subText = document.getElementById('subText');
+
+    let currentVoice = 'male';
+
+    const TIMINGS = [
+      { start: 0, end: 10.4, card: 'cardScene1', head: '12 NOVEMBER WAITING LIST?', text: '12 November ko train se travel karna hai aur direct train mein lambi waiting list mil rahi hai? Pareshan hokar apna trip cancel mat kijiye!' },
+      { start: 10.4, end: 19.9, card: 'cardScene2', head: 'CHECK SAME-TRAIN RESCUE', text: "Trayago par aaiye aur train ke neeche 'Check Same-Train Rescue' par ek baar tap kijiye — aur dekhiye AI ka smart route discovery kamaal!" },
+      { start: 19.9, end: 37.2, card: 'cardScene3', head: 'SAME TRAIN - VADODARA SWITCH', text: 'Aapko train badalne ki bilkul zaroorat nahi hai! Vadodara Junction par usi same train mein bas apni seat badalni hai. Leg 1 Vasai Road se Vadodara aur Leg 2 Vadodara se Hazrat Nizamuddin — dono mein confirmed seat mil gayi!' },
+      { start: 37.2, end: 50.1, card: 'cardScene4', head: 'SMART ROUTE DISCOVERY', text: 'Dhyan rahe, Trayago koi ticket seller nahi hai. Hum best confirm ya lowest waiting dhoondhte hain jisse aapki ticket confirm hone ke chances kafi badh jaate hain!' },
+      { start: 50.1, end: 61.2, card: 'cardScene5', head: 'TRY TRAYAGO.IN TODAY', text: 'Bas official portal par jaakar normal fare mein safely book karein. Aaj hi trayago dot in par apni date search karke dekhein — link bio mein hai!' }
+    ];
+
+    function switchVoice(v) {
+      currentVoice = v;
+      document.getElementById('btnMale').classList.toggle('active', v === 'male');
+      document.getElementById('btnFemale').classList.toggle('active', v === 'female');
+      const wasPlaying = !audioVoice.paused;
+      const curTime = audioVoice.currentTime;
+      audioVoice.src = v === 'male' ? '../audio/nov12_rescue/master_voiceover_male.mp3' : '../audio/nov12_rescue/master_voiceover_female.mp3';
+      audioVoice.currentTime = curTime;
+      if (wasPlaying) {
+        audioVoice.play();
+      }
+    }
+
+    function togglePlay() {
+      if (audioVoice.paused) {
+        audioVoice.play();
+        audioBg.play();
+        btnPlay.textContent = '⏸';
+      } else {
+        audioVoice.pause();
+        audioBg.pause();
+        btnPlay.textContent = '▶';
+      }
+    }
+
+    audioVoice.addEventListener('timeupdate', () => {
+      const cur = audioVoice.currentTime;
+      const dur = audioVoice.duration || 61.16;
+      progressFill.style.width = ((cur / dur) * 100) + '%';
+      
+      const m = Math.floor(cur / 60);
+      const s = Math.floor(cur % 60).toString().padStart(2, '0');
+      const dm = Math.floor(dur / 60);
+      const ds = Math.floor(dur % 60).toString().padStart(2, '0');
+      timeLbl.textContent = `${m}:${s} / ${dm}:${ds}`;
+
+      // Update Active Card & Subtitle
+      const activeSeg = TIMINGS.find(t => cur >= t.start && cur <= t.end) || TIMINGS[0];
+      subHead.textContent = activeSeg.head;
+      subText.textContent = activeSeg.text;
+
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+      const activeCard = document.getElementById(activeSeg.card);
+      if (activeCard) activeCard.classList.add('active');
+    });
+
+    audioVoice.addEventListener('ended', () => {
+      btnPlay.textContent = '▶';
+      audioBg.pause();
+    });
+
+    function seek(e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const pos = (e.clientX - rect.left) / rect.width;
+      const dur = audioVoice.duration || 61.16;
+      audioVoice.currentTime = pos * dur;
+    }
+  </script>
+</body>
+</html>

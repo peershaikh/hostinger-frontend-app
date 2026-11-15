@@ -1,0 +1,24 @@
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: *
+Allow: /
+Allow: /delete-account
+Allow: /data-deletion
+Disallow: /admin
+Disallow: /profile
+Disallow: /wallet
+Disallow: /trips
+Disallow: /feedback
+Disallow: /complaint
+Disallow: /results
+Disallow: /offline
+
+Sitemap: https://www.trayago.in/sitemap.xml
+

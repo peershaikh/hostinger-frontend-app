@@ -1,0 +1,45 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/beta/layout,_N_T_/admin/beta/analytics/layout,_N_T_/admin/beta/analytics/page,_N_T_/admin/beta/analytics"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/admin/beta/analytics/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 96,
+                "slots": {
+                  "children": {
+                    "hints": 160,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/ef4a3287a2dffbdbe6b97d25e9d2e81461e491e87d04373b2d10b70ff6b1a9dc/$/admin/beta/analytics",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/admin/beta/analytics/page"
+    },
+    "isFallback": false
+  }
+}

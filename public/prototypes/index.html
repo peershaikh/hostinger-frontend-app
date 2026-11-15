@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trayago Phase 146K - Visual Design Prototypes (Concept 1: Unified Travel Hub)</title>
+  <style>
+    /* CSS Reset & Design Tokens matching Trayago Brand System */
+    :root {
+      --primary: #2563EB;
+      --primary-hover: #1D4ED8;
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --card-border: #E2E8F0;
+      --text: #0F172A;
+      --muted: #64748B;
+      --input-bg: #F1F5F9;
+      --input-border: #CBD5E1;
+      --accent-green: #10B981;
+      --accent-rose: #EF4444;
+      --accent-amber: #F59E0B;
+      --accent-indigo: #6366F1;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .dark {
+      --primary: #3B82F6;
+      --primary-hover: #60A5FA;
+      --bg: #060913;
+      --card: #0C1322;
+      --card-border: #1E293B;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --input-bg: #131E33;
+      --input-border: #2D3E5F;
+      --accent-green: #34D399;
+      --accent-rose: #F87171;
+      --accent-amber: #FBBF24;
+      --accent-indigo: #818CF8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-family);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Master Prototype Shell Toolbar */
+    .proto-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #0B1120;
+      border-bottom: 1px solid #1E293B;
+      padding: 12px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #F8FAFC;
+    }
+    .proto-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(59, 130, 246, 0.2);
+      color: #60A5FA;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      padding: 4px 10px;
+      rounded: 9999px;
+      border-radius: 9999px;
+    }
+    .proto-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #151F33;
+      padding: 4px;
+      border-radius: 12px;
+      border: 1px solid #1E293B;
+    }
+    .proto-btn {
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .proto-btn:hover { color: #FFFFFF; background: rgba(255, 255, 255, 0.06); }
+    .proto-btn.active {
+      background: #2563EB;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+    }
+    .proto-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .theme-toggle-btn {
+      background: #1E293B;
+      border: 1px solid #334155;
+      color: #F8FAFC;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Device Canvas Container */
+    .device-canvas {
+      padding: 30px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 65px);
+    }
+
+    /* Phone Device Frame */
+    .phone-frame {
+      width: 390px;
+      height: 844px;
+      background: var(--bg);
+      border: 8px solid #1E293B;
+      border-radius: 46px;
+      box-shadow: 0 25px 60px -15px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+      overflow-y: auto;
+      overflow-x: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: width 0.3s, height 0.3s;
+    }
+    .phone-frame.compact {
+      width: 360px;
+      height: 640px;
+      border-radius: 36px;
+    }
+    .phone-frame.desktop {
+      width: 1280px;
+      max-width: 95vw;
+      height: 800px;
+      border-radius: 16px;
+      border: 4px solid #1E293B;
+    }
+
+    /* Status Bar Mock */
+    .phone-status-bar {
+      height: 36px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .compact .phone-status-bar { height: 26px; font-size: 11px; padding: 0 14px; }
+    .desktop .phone-status-bar { display: none; }
+
+    /* Trayago App Header */
+    .app-header {
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--card-border);
+      flex-shrink: 0;
+      background: var(--card);
+    }
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .logo-symbol {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #2563EB, #1D4ED8);
+      color: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 15px;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+    }
+    .logo-text {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .logo-text span { color: var(--primary); }
+
+    /* Screen Content Scroll Area */
+    .screen-content {
+      flex: 1;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-y: auto;
+    }
+    .desktop .screen-content {
+      padding: 24px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Screen Headers */
+    .compact-hero-title {
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      text-align: center;
+      margin-bottom: 2px;
+    }
+    .compact-hero-title span { color: var(--primary); }
+
+    /* Service Switcher Tabs (MakeMyTrip Inspired) */
+    .service-tabs-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .service-pills-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      padding: 3px;
+      border-radius: 12px;
+    }
+    .service-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .service-tab.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 1px 4px rgba(37, 99, 235, 0.3);
+    }
+    .service-tab.coming-soon {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .service-tab.coming-soon span.tag {
+      font-size: 8px;
+      background: rgba(255,255,255,0.15);
+      padding: 1px 4px;
+      border-radius: 4px;
+      margin-left: 2px;
+    }
+
+    /* Voice CTA Pill */
+    .voice-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+    .mic-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    /* Search Form Card (ConfirmTkt / ixigo Benchmark) */
+    .search-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 14px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .desktop .search-card {
+      padding: 24px;
+      border-radius: 24px;
+    }
+
+    /* Station Input Group */
+    .station-box {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      position: relative;
+    }
+    .station-box:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+      background: var(--card);
+    }
+    .station-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+    .station-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .dot-green { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-green); }
+    .dot-rose { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-rose); }
+    .clear-link {
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 9px;
+    }
+    .clear-link:hover { color: var(--accent-rose); }
+    .station-val-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-top: 2px;
+    }
+    .station-name {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--text);
+    }
+    .station-code-pill {
+      font-family: monospace;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(37, 99, 235, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+    }
+
+    /* In-flow Centered Swap Button */
+    .swap-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: -16px 0;
+      z-index: 10;
+    }
+    .swap-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--input-border);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
+    }
+    .swap-btn:hover { color: var(--primary); border-color: var(--primary); transform: rotate(180deg); }
+
+    /* Date and Quota 2-Column Row */
+    .params-row {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 8px;
+    }
+    .param-box {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 14px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .param-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .param-val {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .chips-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 6px;
+    }
+    .chip-btn {
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--input-border);
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+    }
+    .chip-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Full-Width Search CTA */
+    .search-cta-btn {
+      width: 100%;
+      min-height: 48px;
+      background: linear-gradient(135deg, #2563EB, #1D4ED8);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+      transition: transform 0.1s, box-shadow 0.2s;
+    }
+    .search-cta-btn:hover { box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45); }
+    .search-cta-btn:active { transform: scale(0.98); }
+
+    /* Popular Pills Strip */
+    .popular-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .popular-chip {
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .trust-icon { color: var(--accent-green); }
+
+    /* Fixed Bottom Nav (Mobile) */
+    .bottom-nav {
+      height: 54px;
+      background: var(--card);
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-shrink: 0;
+    }
+    .desktop .bottom-nav { display: none; }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .nav-item.active { color: var(--primary); }
+    .nav-icon { font-size: 16px; }
+
+    /* Zero-Scroll Measurement HUD */
+    .measure-hud {
+      background: #0F172A;
+      color: #38BDF8;
+      border: 1px solid #1E293B;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-family: monospace;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 600px;
+      margin-top: 20px;
+    }
+    .measure-hud span.val { color: #4ADE80; font-weight: 900; }
+
+    /* Card Variants (Results, PNR, Live) */
+    .train-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .train-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .train-no-name {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--text);
+    }
+    .train-runs-badge {
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-green);
+    }
+    .route-timeline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+    .time-node { text-align: left; }
+    .time-node.right { text-align: right; }
+    .time-val { font-size: 16px; font-weight: 900; color: var(--text); }
+    .stn-val { font-size: 11px; color: var(--muted); font-weight: 700; }
+    .duration-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+    .duration-line {
+      width: 70px;
+      height: 2px;
+      background: var(--card-border);
+      position: relative;
+    }
+    .duration-line::after {
+      content: '➔';
+      position: absolute;
+      right: -4px;
+      top: -7px;
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    /* Class Cards Matrix */
+    .class-matrix {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .class-chip {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 10px;
+      padding: 6px 4px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .class-chip.available {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.08);
+    }
+    .class-chip.waitlist {
+      border-color: rgba(245, 158, 11, 0.4);
+      background: rgba(245, 158, 11, 0.08);
+    }
+    .class-type { font-size: 11px; font-weight: 900; color: var(--text); }
+    .class-status { font-size: 9px; font-weight: 800; margin-top: 2px; }
+    .status-cnf { color: var(--accent-green); }
+    .status-wl { color: var(--accent-amber); }
+    .class-fare { font-size: 9px; font-weight: 700; color: var(--muted); }
+
+    /* Split & Rescue Highlight Cards */
+    .rescue-card {
+      border: 1.5px solid rgba(59, 130, 246, 0.5);
+      background: linear-gradient(180deg, rgba(37, 99, 235, 0.08), transparent);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .rescue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 900;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .rescue-legs {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 8px 0;
+    }
+    .leg-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+
+    /* PNR Status Gauge Mock */
+    .pnr-gauge-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+    }
+    .gauge-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 6px solid var(--accent-green);
+      margin: 10px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .gauge-num { font-size: 22px; font-weight: 900; color: var(--accent-green); }
+    .gauge-lbl { font-size: 8px; font-weight: 800; text-transform: uppercase; color: var(--muted); }
+
+    /* Live Tracking Timeline Mock */
+    .live-timeline-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .timeline-node {
+      display: flex;
+      gap: 12px;
+      position: relative;
+      padding-bottom: 16px;
+    }
+    .timeline-node::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 22px;
+      bottom: 0;
+      width: 2px;
+      background: var(--card-border);
+    }
+    .timeline-node:last-child::before { display: none; }
+    .timeline-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--input-bg);
+      border: 2px solid var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 900;
+      flex-shrink: 0;
+      z-index: 2;
+    }
+    .timeline-node.passed .timeline-dot {
+      background: var(--accent-green);
+      border-color: var(--accent-green);
+      color: white;
+    }
+    .timeline-node.current .timeline-dot {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.3);
+      animation: pulse 1.5s infinite;
+    }
+    .timeline-info { flex: 1; }
+    .stn-name-row { font-size: 13px; font-weight: 900; }
+    .stn-time-row { font-size: 11px; color: var(--muted); font-weight: 700; }
+
+    /* Voice Modal Overlay Mock */
+    .voice-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 17, 32, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 500;
+      border-radius: 38px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+    .voice-mic-wave {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563EB, #60A5FA);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: white;
+      box-shadow: 0 0 0 10px rgba(59, 130, 246, 0.3), 0 0 0 20px rgba(59, 130, 246, 0.15);
+      animation: wave 2s infinite ease-in-out;
+      margin-bottom: 20px;
+    }
+    @keyframes wave {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); box-shadow: 0 0 0 14px rgba(59, 130, 246, 0.4), 0 0 0 28px rgba(59, 130, 246, 0.15); }
+    }
+    .voice-query-pill {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 800;
+      margin: 12px 0;
+    }
+    .voice-close-btn {
+      margin-top: 20px;
+      padding: 6px 16px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTER PROTO CONTROL BAR -->
+  <header class="proto-bar">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a href="/" class="logo-badge">
+        <div class="logo-symbol">T</div>
+        <div class="logo-text">TRAYAGO <span>PROTOTYPE</span></div>
+      </a>
+      <span class="proto-badge">Concept 1: Unified Hub</span>
+    </div>
+
+    <!-- VIEWPORT SELECTOR -->
+    <div class="proto-tabs">
+      <span style="font-size: 11px; font-weight: 800; color: #64748B; padding: 0 6px;">DEVICE:</span>
+      <button class="proto-btn active" onclick="setDevice('mobile')">📱 Mobile 390×844</button>
+      <button class="proto-btn" onclick="setDevice('compact')">📱 Compact 360×640</button>
+      <button class="proto-btn" onclick="setDevice('desktop')">💻 Desktop 1280×800</button>
+    </div>
+
+    <!-- SCREEN SELECTOR -->
+    <div class="proto-tabs">
+      <span style="font-size: 11px; font-weight: 800; color: #64748B; padding: 0 6px;">SCREEN:</span>
+      <button class="proto-btn active" id="tab-home" onclick="setScreen('home')">1. Search Home</button>
+      <button class="proto-btn" id="tab-results" onclick="setScreen('results')">2. Search Results</button>
+      <button class="proto-btn" id="tab-rescue" onclick="setScreen('rescue')">3. Split & Rescue</button>
+      <button class="proto-btn" id="tab-pnr" onclick="setScreen('pnr')">4. PNR Status</button>
+      <button class="proto-btn" id="tab-live" onclick="setScreen('live')">5. Live Tracking</button>
+      <button class="proto-btn" id="tab-voice" onclick="setScreen('voice')">6. Voice Modal</button>
+    </div>
+
+    <!-- THEME TOGGLE -->
+    <div class="proto-controls">
+      <button class="theme-toggle-btn" onclick="toggleTheme()">
+        <span id="theme-icon">🌙</span> <span id="theme-text">Dark Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- DEVICE SIMULATOR STAGE -->
+  <main class="device-canvas">
+    
+    <div class="phone-frame" id="device-frame">
+      
+      <!-- STATUS BAR -->
+      <div class="phone-status-bar">
+        <span>09:41</span>
+        <div style="display: flex; gap: 4px;"><span>📶</span><span>🔋</span></div>
+      </div>
+
+      <!-- TRAYAGO NAVBAR -->
+      <nav class="app-header">
+        <div class="logo-badge">
+          <div class="logo-symbol">T</div>
+          <div class="logo-text">TRAYAGO <span>SEARCH</span></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 11px; font-weight: 800; color: var(--muted);">Free: 3/3</span>
+          <button style="border: 1px solid var(--card-border); background: var(--input-bg); color: var(--text); font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 6px;">🌐 EN</button>
+        </div>
+      </nav>
+
+      <!-- SCREEN 1: HOMEPAGE (SEARCH FIRST HUB) -->
+      <div class="screen-content" id="screen-home">
+        
+        <div class="compact-hero-title">
+          Find Trains &amp; <span>Split Journeys</span>
+        </div>
+
+        <!-- 36px Service Switcher Tabs + Voice Search -->
+        <div class="service-tabs-bar">
+          <div class="service-pills-row">
+            <button class="service-tab active">🚆 Trains</button>
+            <button class="service-tab" onclick="setScreen('live')">📍 Live</button>
+            <button class="service-tab" onclick="setScreen('pnr')">🎫 PNR</button>
+            <!-- Future Extensible Stubs -->
+            <button class="service-tab coming-soon" title="Future Extension">🚌 Bus <span class="tag">Soon</span></button>
+            <button class="service-tab coming-soon" title="Future Extension">✈️ Flight <span class="tag">Soon</span></button>
+          </div>
+          <button class="voice-pill-btn" onclick="setScreen('voice')">
+            <span class="mic-dot"></span>
+            <span>बोलकर खोजें / Voice</span>
+          </button>
+        </div>
+
+        <!-- SEARCH FORM CARD -->
+        <form class="search-card" onsubmit="event.preventDefault(); setScreen('results');">
+          
+          <!-- FROM STATION -->
+          <div class="station-box">
+            <div class="station-label-row">
+              <span class="station-indicator"><span class="dot-green"></span> From (बोर्डिंग स्टेशन)</span>
+              <span class="clear-link">Clear</span>
+            </div>
+            <div class="station-val-row">
+              <div class="station-name">New Delhi</div>
+              <div class="station-code-pill">NDLS</div>
+            </div>
+          </div>
+
+          <!-- CENTERED SWAP BUTTON -->
+          <div class="swap-row">
+            <button type="button" class="swap-btn" title="Swap Stations">⇄</button>
+          </div>
+
+          <!-- TO STATION -->
+          <div class="station-box">
+            <div class="station-label-row">
+              <span class="station-indicator"><span class="dot-rose"></span> To (गंतव्य स्टेशन)</span>
+              <span class="clear-link">Clear</span>
+            </div>
+            <div class="station-val-row">
+              <div class="station-name">Mumbai CSMT</div>
+              <div class="station-code-pill">CSMT</div>
+            </div>
+          </div>
+
+          <!-- DATE & QUOTA -->
+          <div class="params-row">
+            <div class="param-box">
+              <div class="param-label">Date (तारीख)</div>
+              <div class="param-val">02 Nov 2026</div>
+              <div class="chips-row">
+                <button type="button" class="chip-btn active">Today</button>
+                <button type="button" class="chip-btn">Tomorrow</button>
+                <button type="button" class="chip-btn">+2 Days</button>
+              </div>
+            </div>
+            <div class="param-box">
+              <div class="param-label">Quota (कोटा)</div>
+              <div class="param-val" style="margin-top: 4px;">General (GN) ▼</div>
+            </div>
+          </div>
+
+          <!-- SEARCH CTA -->
+          <button type="submit" class="search-cta-btn">
+            <span>🔍</span>
+            <span>Search Trains (ट्रेन खोजें)</span>
+          </button>
+        </form>
+
+        <!-- POPULAR ROUTE CHIPS -->
+        <div class="popular-strip">
+          <span style="font-weight: 800;">Popular:</span>
+          <span class="popular-chip">Delhi ⇄ Varanasi</span>
+          <span class="popular-chip">Bengaluru ⇄ Delhi</span>
+          <span class="popular-chip">Mumbai ⇄ Goa</span>
+        </div>
+
+        <!-- TRUST STRIP -->
+        <div class="trust-strip">
+          <span class="trust-item"><span class="trust-icon">🛡️</span> No data sold</span>
+          <span>·</span>
+          <span class="trust-item"><span class="trust-icon">🔒</span> AES-256</span>
+          <span>·</span>
+          <span class="trust-item"><span class="trust-icon">🚆</span> Official IRCTC</span>
+        </div>
+
+        <!-- ADVISORY BANNER (BELOW THE SEARCH FORM) -->
+        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 12px; padding: 10px; font-size: 11px; margin-top: 8px;">
+          <strong style="color: var(--accent-rose);">⚠️ 72 Trains Cancelled Today</strong>
+          <p style="color: var(--muted); margin-top: 2px;">Automatic full refunds apply to confirmed IRCTC e-tickets.</p>
+        </div>
+
+      </div>
+
+      <!-- SCREEN 2: SEARCH RESULTS -->
+      <div class="screen-content" id="screen-results" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <button onclick="setScreen('home')" style="border: none; background: transparent; color: var(--primary); font-size: 12px; font-weight: 800; cursor: pointer;">← Modify Search</button>
+          <span style="font-size: 11px; font-weight: 800; color: var(--muted);">NDLS ➔ CSMT · 02 Nov</span>
+        </div>
+
+        <!-- DIRECT TRAIN 1 (AVAILABLE) -->
+        <div class="train-card">
+          <div class="train-header">
+            <span class="train-no-name">12952 TEJAS RAJDHANI</span>
+            <span class="train-runs-badge">Runs Daily</span>
+          </div>
+          <div class="route-timeline">
+            <div class="time-node">
+              <div class="time-val">16:55</div>
+              <div class="stn-val">NDLS (New Delhi)</div>
+            </div>
+            <div class="duration-indicator">
+              <span>15h 40m</span>
+              <div class="duration-line"></div>
+            </div>
+            <div class="time-node right">
+              <div class="time-val">08:35</div>
+              <div class="stn-val">MMCT (Mumbai)</div>
+            </div>
+          </div>
+          <div class="class-matrix">
+            <div class="class-chip waitlist">
+              <div class="class-type">3A</div>
+              <div class="class-status status-wl">WL 12 (78%)</div>
+              <div class="class-fare">₹2,420</div>
+            </div>
+            <div class="class-chip available">
+              <div class="class-type">2A</div>
+              <div class="class-status status-cnf">AVL 18</div>
+              <div class="class-fare">₹3,460</div>
+            </div>
+            <div class="class-chip available">
+              <div class="class-type">1A</div>
+              <div class="class-status status-cnf">AVL 4</div>
+              <div class="class-fare">₹4,890</div>
+            </div>
+            <div class="class-chip" style="opacity: 0.5;">
+              <div class="class-type">SL</div>
+              <div class="class-status">N/A</div>
+              <div class="class-fare">AC Only</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DIRECT TRAIN 2 (WAITLISTED WITH SAME-TRAIN RESCUE) -->
+        <div class="train-card">
+          <div class="train-header">
+            <span class="train-no-name">12138 PUNJAB MAIL</span>
+            <span class="train-runs-badge">Runs Daily</span>
+          </div>
+          <div class="route-timeline">
+            <div class="time-node">
+              <div class="time-val">05:15</div>
+              <div class="stn-val">NDLS (New Delhi)</div>
+            </div>
+            <div class="duration-indicator">
+              <span>26h 20m</span>
+              <div class="duration-line"></div>
+            </div>
+            <div class="time-node right">
+              <div class="time-val">07:35</div>
+              <div class="stn-val">CSMT (Mumbai)</div>
+            </div>
+          </div>
+          <div class="class-matrix">
+            <div class="class-chip waitlist">
+              <div class="class-type">SL</div>
+              <div class="class-status status-wl">WL 48 (35%)</div>
+              <div class="class-fare">₹645</div>
+            </div>
+            <div class="class-chip waitlist">
+              <div class="class-type">3A</div>
+              <div class="class-status status-wl">WL 24 (55%)</div>
+              <div class="class-fare">₹1,710</div>
+            </div>
+            <div class="class-chip waitlist">
+              <div class="class-type">2A</div>
+              <div class="class-status status-wl">WL 8 (72%)</div>
+              <div class="class-fare">₹2,490</div>
+            </div>
+            <div class="class-chip available">
+              <div class="class-type">1A</div>
+              <div class="class-status status-cnf">AVL 2</div>
+              <div class="class-fare">₹4,220</div>
+            </div>
+          </div>
+
+          <!-- SAME TRAIN RESCUE HOOK -->
+          <div style="background: rgba(37,99,235,0.08); border: 1px dashed var(--primary); border-radius: 10px; padding: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="setScreen('rescue')">
+            <div>
+              <span style="font-size: 10px; font-weight: 900; color: var(--primary);">⚡ AI SAME-TRAIN RESCUE ELIGIBLE</span>
+              <div style="font-size: 11px; font-weight: 700; color: var(--text);">Direct is WL 48 · Get Confirmed Berth via Coach Swap</div>
+            </div>
+            <span style="font-size: 12px; font-weight: 900; color: var(--primary);">View ➔</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SCREEN 3: SPLIT & RESCUE VIEW -->
+      <div class="screen-content" id="screen-rescue" style="display: none;">
+        <button onclick="setScreen('results')" style="border: none; background: transparent; color: var(--primary); font-size: 12px; font-weight: 800; cursor: pointer;">← Back to Results</button>
+        
+        <!-- RESCUE DETAILS -->
+        <div class="rescue-card">
+          <div class="rescue-badge">⚡ SAME-TRAIN RESCUE (12138 Punjab Mail)</div>
+          <h3 style="font-size: 14px; font-weight: 900; margin-bottom: 4px;">Travel on the same train with 2 confirmed bookings</h3>
+          <p style="font-size: 11px; color: var(--muted);">Direct NDLS ➔ CSMT is waitlisted (WL 48). By splitting across station quotas inside the same train, seats are confirmed on both legs.</p>
+          
+          <div class="rescue-legs">
+            <div class="leg-item">
+              <div>
+                <strong>Leg 1: NDLS ➔ JHS (Jhansi)</strong>
+                <div style="color: var(--muted); font-size: 10px;">Dep 05:15 · Arr 12:40 · Coach S4</div>
+              </div>
+              <span class="status-cnf" style="font-weight: 900;">CONFIRMED</span>
+            </div>
+            <div class="leg-item">
+              <div>
+                <strong>Leg 2: JHS ➔ CSMT (Mumbai)</strong>
+                <div style="color: var(--muted); font-size: 10px;">Dep 12:50 · Arr 07:35 · Coach S6</div>
+              </div>
+              <span class="status-cnf" style="font-weight: 900;">CONFIRMED</span>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 800; padding: 6px 0; border-top: 1px solid var(--card-border);">
+            <span>Combined Fare: ₹690</span>
+            <span style="color: var(--accent-green);">100% Confirmed Berth</span>
+          </div>
+
+          <button class="search-cta-btn" style="min-height: 40px; font-size: 12px; margin-top: 8px;">
+            Book Official IRCTC Split Tickets
+          </button>
+        </div>
+
+        <!-- 2-TRAIN SPLIT ALTERNATIVE -->
+        <div class="rescue-card" style="border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.05); margin-top: 8px;">
+          <div class="rescue-badge" style="color: var(--accent-green);">🚆 2-TRAIN CONNECTING JOURNEY ALTERNATIVE</div>
+          <h3 style="font-size: 14px; font-weight: 900; margin-bottom: 4px;">NDLS ➔ Bhopal (12002 Shatabdi) + Bhopal ➔ CSMT (12138)</h3>
+          <p style="font-size: 11px; color: var(--muted);">Guaranteed 1h 25m transfer buffer at Bhopal Jn (BPL).</p>
+          <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 800; margin-top: 8px;">
+            <span>Total Duration: 21h 10m (5h faster)</span>
+            <span style="color: var(--accent-green);">AVL 32</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SCREEN 4: PNR STATUS -->
+      <div class="screen-content" id="screen-pnr" style="display: none;">
+        <div class="compact-hero-title">PNR Status &amp; <span>Prediction</span></div>
+
+        <div class="search-card">
+          <div class="station-box">
+            <div class="station-label-row">
+              <span>Enter 10-Digit IRCTC PNR Number</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+              <span style="font-size: 18px; font-weight: 900; letter-spacing: 2px;">8454-804144</span>
+              <button class="chip-btn active" style="font-size: 10px;">Check</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PNR RESULT GAUGE -->
+        <div class="pnr-gauge-card">
+          <div style="font-size: 11px; font-weight: 800; color: var(--muted);">TRAIN 12627 · KARNATAKA EXP · 04 NOV</div>
+          <div class="gauge-circle">
+            <div class="gauge-num">94%</div>
+            <div class="gauge-lbl">Confirmation</div>
+          </div>
+          <div style="font-size: 12px; font-weight: 900; color: var(--accent-green);">High Probability of Berth Allocation</div>
+          
+          <div style="margin-top: 14px; text-align: left; font-size: 11px; border-top: 1px solid var(--card-border); padding-top: 10px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+              <span>Passenger 1 (Adult)</span>
+              <strong>Booking: WL 14 ➔ Current: RAC 2</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; color: var(--muted);">
+              <span>Chart Status</span>
+              <span>Preparation in ~3h 15m (04:00 PM)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SCREEN 5: LIVE TRACKING -->
+      <div class="screen-content" id="screen-live" style="display: none;">
+        <div class="compact-hero-title">Live Train <span>Running Status</span></div>
+
+        <!-- LIVE HEADER CARD -->
+        <div class="train-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), var(--card));">
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <span style="font-size: 15px; font-weight: 900;">12952 TEJAS RAJDHANI</span>
+            <span style="font-size: 11px; font-weight: 900; color: var(--accent-green);">● ON TIME</span>
+          </div>
+          <div style="font-size: 11px; color: var(--muted); font-weight: 700;">Speed: 118 km/h · Next: Kota Jn (ETA 21:05)</div>
+        </div>
+
+        <!-- TIMELINE PROGRESS -->
+        <div class="live-timeline-card">
+          <div class="timeline-node passed">
+            <div class="timeline-dot">✓</div>
+            <div class="timeline-info">
+              <div class="stn-name-row">New Delhi (NDLS)</div>
+              <div class="stn-time-row">Departed 16:55 (Right Time) · Platform 3</div>
+            </div>
+          </div>
+          <div class="timeline-node passed">
+            <div class="timeline-dot">✓</div>
+            <div class="timeline-info">
+              <div class="stn-name-row">Mathura Jn (MTJ)</div>
+              <div class="stn-time-row">Departed 18:05 (Right Time) · Platform 1</div>
+            </div>
+          </div>
+          <div class="timeline-node current">
+            <div class="timeline-dot">🚆</div>
+            <div class="timeline-info">
+              <div class="stn-name-row" style="color: var(--primary);">Kota Jn (KOTA)</div>
+              <div class="stn-time-row">Approaching · ETA 21:05 · Platform 1A</div>
+            </div>
+          </div>
+          <div class="timeline-node">
+            <div class="timeline-dot">○</div>
+            <div class="timeline-info">
+              <div class="stn-name-row">Ratlam Jn (RTM)</div>
+              <div class="stn-time-row">Expected 01:15 · Platform 4</div>
+            </div>
+          </div>
+          <div class="timeline-node">
+            <div class="timeline-dot">○</div>
+            <div class="timeline-info">
+              <div class="stn-name-row">Mumbai Central (MMCT)</div>
+              <div class="stn-time-row">Terminus · Expected 08:35</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SCREEN 6: VOICE MODAL OVERLAY -->
+      <div class="voice-overlay" id="screen-voice" style="display: none;">
+        <div class="voice-mic-wave">🎤</div>
+        <h2 style="font-size: 18px; font-weight: 900; color: white;">Listening... (सुन रहा हूं)</h2>
+        <div class="voice-query-pill">"Delhi to Mumbai tomorrow"</div>
+        <p style="font-size: 11px; color: #94A3B8; max-width: 280px; margin-top: 4px;">
+          Try: "Train 12952 status", "Check PNR 8454804144", or "दिल्ली से पटना"
+        </p>
+
+        <!-- STRICT DOMAIN BOUNDARY CARD -->
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 10px; margin-top: 14px; text-align: left; font-size: 10px; color: #CBD5E1;">
+          <strong style="color: #60A5FA;">Supported Voice Capabilities:</strong>
+          <ul style="margin-left: 14px; margin-top: 4px; line-height: 1.5;">
+            <li>1. Train Route Search (English / Hindi / Hinglish)</li>
+            <li>2. 10-Digit PNR Status Lookup</li>
+            <li>3. 5-Digit Live Train Running Tracking</li>
+          </ul>
+          <span style="color: #F87171; display: block; margin-top: 4px;">* General non-travel AI queries are rejected.</span>
+        </div>
+
+        <button class="voice-close-btn" onclick="setScreen('home')">✕ Close Voice Assistant</button>
+      </div>
+
+      <!-- BOTTOM NAVIGATION (MOBILE) -->
+      <nav class="bottom-nav">
+        <div class="nav-item active" onclick="setScreen('home')">
+          <span class="nav-icon">🔍</span>
+          <span>Search</span>
+        </div>
+        <div class="nav-item" onclick="setScreen('live')">
+          <span class="nav-icon">📍</span>
+          <span>Live</span>
+        </div>
+        <div class="nav-item" onclick="setScreen('pnr')">
+          <span class="nav-icon">🎫</span>
+          <span>PNR</span>
+        </div>
+        <div class="nav-item" onclick="alert('News section')">
+          <span class="nav-icon">📰</span>
+          <span>News</span>
+        </div>
+        <div class="nav-item" onclick="alert('Account profile')">
+          <span class="nav-icon">👤</span>
+          <span>Account</span>
+        </div>
+      </nav>
+
+    </div>
+
+    <!-- ZERO-SCROLL GEOMETRY HUD -->
+    <div class="measure-hud" id="measure-hud">
+      <div>VIEWPORT: <span class="val" id="hud-viewport">390 × 844 px</span></div>
+      <div>FORM HEIGHT: <span class="val" id="hud-form">350 px</span></div>
+      <div>TOTAL TOP OFFSET: <span class="val" id="hud-offset">486 px</span></div>
+      <div>HEADROOM CLEARANCE: <span class="val" id="hud-headroom">+358 px</span></div>
+      <div>STATUS: <span class="val" style="color: #4ADE80;">✅ 100% ZERO-SCROLL</span></div>
+    </div>
+
+  </main>
+
+  <!-- INTERACTIVE CONTROLLER SCRIPT -->
+  <script>
+    function setDevice(type) {
+      const frame = document.getElementById('device-frame');
+      frame.className = 'phone-frame ' + (type === 'compact' ? 'compact' : type === 'desktop' ? 'desktop' : '');
+      
+      const hudVp = document.getElementById('hud-viewport');
+      const hudOffset = document.getElementById('hud-offset');
+      const hudClearance = document.getElementById('hud-headroom');
+
+      if (type === 'compact') {
+        hudVp.textContent = '360 × 640 px';
+        hudOffset.textContent = '486 px';
+        hudClearance.textContent = '+154 px';
+      } else if (type === 'desktop') {
+        hudVp.textContent = '1280 × 800 px';
+        hudOffset.textContent = '340 px';
+        hudClearance.textContent = '+460 px';
+      } else {
+        hudVp.textContent = '390 × 844 px';
+        hudOffset.textContent = '486 px';
+        hudClearance.textContent = '+358 px';
+      }
+
+      document.querySelectorAll('.proto-tabs:nth-of-type(1) .proto-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    function setScreen(screenId) {
+      const screens = ['home', 'results', 'rescue', 'pnr', 'live', 'voice'];
+      screens.forEach(s => {
+        const el = document.getElementById('screen-' + s);
+        if (el) el.style.display = (s === screenId) ? (s === 'voice' ? 'flex' : 'flex') : 'none';
+      });
+
+      document.querySelectorAll('.proto-tabs:nth-of-type(2) .proto-btn').forEach(btn => btn.classList.remove('active'));
+      const activeTab = document.getElementById('tab-' + screenId);
+      if (activeTab) activeTab.classList.add('active');
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle('dark');
+      document.getElementById('theme-icon').textContent = isDark ? '🌙' : '☀️';
+      document.getElementById('theme-text').textContent = isDark ? 'Dark Mode' : 'Light Mode';
+    }
+
+    // Auto-initialize from query parameters (e.g. ?screen=results&device=compact&theme=light)
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const scr = params.get('screen');
+      const dev = params.get('device');
+      const th = params.get('theme');
+
+      if (dev) {
+        const frame = document.getElementById('device-frame');
+        frame.className = 'phone-frame ' + (dev === 'compact' ? 'compact' : dev === 'desktop' ? 'desktop' : '');
+        const hudVp = document.getElementById('hud-viewport');
+        const hudOffset = document.getElementById('hud-offset');
+        const hudClearance = document.getElementById('hud-headroom');
+        if (dev === 'compact') {
+          hudVp.textContent = '360 × 640 px';
+          hudOffset.textContent = '486 px';
+          hudClearance.textContent = '+154 px';
+        } else if (dev === 'desktop') {
+          hudVp.textContent = '1280 × 800 px';
+          hudOffset.textContent = '340 px';
+          hudClearance.textContent = '+460 px';
+        }
+      }
+
+      if (scr) {
+        setScreen(scr);
+      }
+
+      if (th === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('theme-icon').textContent = '☀️';
+        document.getElementById('theme-text').textContent = 'Light Mode';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/content/layout,_N_T_/admin/content/referral-offers/layout,_N_T_/admin/content/referral-offers/page,_N_T_/admin/content/referral-offers"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/admin/content/referral-offers/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 96,
+                "slots": {
+                  "children": {
+                    "hints": 160,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/942e9457d9aa699be863556e8b4b63e67ec3d3354b95222d8cb641677baa861f/$/admin/content/referral-offers",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/admin/content/referral-offers/page"
+    },
+    "isFallback": false
+  }
+}

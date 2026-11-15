@@ -1,0 +1,35 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/complaint/layout,_N_T_/complaint/page,_N_T_/complaint"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/complaint/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/dab1876e4a60e71fcdf5c3f9a492f5e04ce5d2636a51f2c6a873395c587f8b99/$/complaint",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/complaint/page"
+    },
+    "isFallback": false
+  }
+}

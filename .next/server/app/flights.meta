@@ -1,0 +1,35 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/flights/layout,_N_T_/flights/page,_N_T_/flights"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/flights/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/8c57087f86fb9b687fccbaf5dda9d71b102459d85b2897e173f94afc0ac343f2/$/flights",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/flights/page"
+    },
+    "isFallback": false
+  }
+}

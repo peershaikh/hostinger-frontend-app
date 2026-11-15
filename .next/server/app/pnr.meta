@@ -1,0 +1,35 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/pnr/layout,_N_T_/pnr/page,_N_T_/pnr"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/pnr/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/4788b41358f499f41f3a1934a8d594bc7b71753caf30559f579d898864dc6864/$/pnr",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/pnr/page"
+    },
+    "isFallback": false
+  }
+}

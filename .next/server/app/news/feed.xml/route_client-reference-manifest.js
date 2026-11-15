@@ -1,0 +1,1 @@
+globalThis.__RSC_MANIFEST=(globalThis.__RSC_MANIFEST||{});globalThis.__RSC_MANIFEST["/news/feed.xml/route"]={"moduleLoading":{"prefix":"/_next/"},"ssrModuleMapping":{},"edgeSSRModuleMapping":{},"clientModules":{},"entryCSSFiles":{"D:\\Data Tarine\\trine\\web\\src\\app\\news\\feed.xml\\route":[]},"rscModuleMapping":{},"edgeRscModuleMapping":{}};

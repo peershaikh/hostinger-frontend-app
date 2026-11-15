@@ -1,0 +1,35 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/split-journey/layout,_N_T_/split-journey/page,_N_T_/split-journey"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/split-journey/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/f1c5ce5cefd322fec92d6e1da8c00523dfdc930c4bacb9b4cc254b9d9766b073/$/split-journey",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/split-journey/page"
+    },
+    "isFallback": false
+  }
+}
