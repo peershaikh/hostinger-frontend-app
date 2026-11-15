@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx",
     "typecheck": "tsc --noEmit",
+    "deploy:hostinger": "node ../scripts/deploy_frontend_hostinger.js",
+    "deploy:frontend": "node ../scripts/deploy_frontend_hostinger.js",
     "test:refund": "npx tsx src/__tests__/cancellationRefund.test.ts",
     "test:rake": "npx tsx src/__tests__/coachRakeComposition.test.ts",
     "test:chart": "npx tsx src/__tests__/chartCountdown.test.ts"
