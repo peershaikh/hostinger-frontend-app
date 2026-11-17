@@ -380,6 +380,12 @@
       "namedRegex": "^/offline(?:/)?$"
     },
     {
+      "page": "/onboarding/verify-mobile",
+      "regex": "^/onboarding/verify\\-mobile(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/onboarding/verify\\-mobile(?:/)?$"
+    },
+    {
       "page": "/pnr",
       "regex": "^/pnr(?:/)?$",
       "routeKeys": {},
