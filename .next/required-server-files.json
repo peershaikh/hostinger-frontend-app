@@ -116,7 +116,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "d:\\Data Tarine\\trine\\",
+    "outputFileTracingRoot": "D:\\Data Tarine\\trine\\",
     "enablePrerenderSourceMaps": true,
     "cacheComponents": false,
     "cacheLife": {
@@ -350,7 +350,7 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.mjs",
     "turbopack": {
-      "root": "d:\\Data Tarine\\trine\\"
+      "root": "D:\\Data Tarine\\trine\\"
     },
     "serverExternalPackages": [
       "amqplib",
@@ -376,7 +376,7 @@
       "redis",
       "tedious"
     ],
-    "repoRoot": "d:\\Data Tarine\\trine",
+    "repoRoot": "D:\\Data Tarine\\trine",
     "distDirRoot": ".next",
     "supportsImmutableAssets": false,
     "_originalRewrites": {
@@ -417,7 +417,7 @@
       }
     ]
   },
-  "appDir": "d:\\Data Tarine\\trine\\web",
+  "appDir": "D:\\Data Tarine\\trine\\web",
   "relativeAppDir": "web",
   "files": [
     ".next\\package.json",
