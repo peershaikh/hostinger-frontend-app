@@ -912,7 +912,7 @@
       "routeType": "page",
       "response": "complete",
       "compute": "static",
-      "htmlSize": 96664,
+      "htmlSize": 96668,
       "experimentalBypassFor": [
         {
           "type": "header",
