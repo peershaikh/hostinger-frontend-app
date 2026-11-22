@@ -8,13 +8,13 @@
 9:"static/chunks/9989-2d234d48b95bf1ce.js"
 a:"static/chunks/1325-dac038420203c287.js"
 b:"static/chunks/7116-ca73b7db90c268a1.js"
-c:"static/chunks/5611-eeefbf221674a93a.js"
-d:"static/chunks/5806-cb7e98700e3ca6da.js"
-e:"static/chunks/app/layout-6701c2f1d33884b4.js"
+c:"static/chunks/5611-69063d207c5fe168.js"
+d:"static/chunks/5806-5e5ba4795ef80a8a.js"
+e:"static/chunks/app/layout-c8c78aa581f5df95.js"
 f:I[42593,["8229","$3","4197","$4","7922","$5","9457","$6","7805","$7","9013","$8","9989","$9","1325","$a","7116","$b","5611","$c","5806","$d","7177","$e"],""]
 14:I[27123,[],"default",1]
 :HL["/_next/static/css/6fa30a242c791a24.css","style"]
-:HL["/_next/static/css/fe0363e71522001a.css","style"]
+:HL["/_next/static/css/c550c4587ab89b86.css","style"]
 2:T5a3,
               (function() {
                 try {
@@ -45,7 +45,7 @@ f:I[42593,["8229","$3","4197","$4","7922","$5","9457","$6","7805","$7","9013","$
                   } } catch (e) {}
               })()
             11:[["children",{"s":"__PAGE__","h":512,"d":{"r":"$L12","p":false,"v":null}}]]
-0:{"P":null,"c":["",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/6fa30a242c791a24.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/fe0363e71522001a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":["$undefined",["$","script",null,{"id":"theme-init","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"id":"pwa-install-capture","dangerouslySetInnerHTML":{"__html":"\n              window.addEventListener('beforeinstallprompt', (e) => {\n                e.preventDefault();\n                window.deferredPrompt = e;\n              });\n            "}}],["$","$Lf",null,{"src":"https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js","strategy":"afterInteractive"}],["$","$Lf",null,{"id":"onesignal-init","strategy":"afterInteractive","dangerouslySetInnerHTML":{"__html":"\n              window.OneSignalDeferred = window.OneSignalDeferred || [];\n              const appId = \"\";\n              if (appId) {\n                OneSignalDeferred.push(function(OneSignal) {\n                  OneSignal.init({\n                    appId: appId,\n                    safari_web_id: \"\",\n                    serviceWorkerPath: 'notification-sw.js',\n                    serviceWorkerParam: {\n                      scope: '/notification-scope/'\n                    },\n                    notifyButton: { \n                      enable: true,\n                      offset: {\n                        bottom: \"80px\",\n                        right: \"16px\"\n                      }\n                    },\n                  });\n                });\n              }\n            "}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"WebApplication\",\"name\":\"Trayago\",\"url\":\"https://www.trayago.in\",\"description\":\"Intelligent Pan-India travel planner with AI-powered split journeys, confirmation predictions, and GPS live train tracking.\",\"applicationCategory\":\"TravelApplication\",\"operatingSystem\":\"All\",\"browserRequirements\":\"Requires HTML5, CSS3, and JavaScript.\",\"creator\":{\"@type\":\"Organization\",\"name\":\"Trayago\",\"url\":\"https://www.trayago.in\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"0\",\"priceCurrency\":\"INR\",\"description\":\"Free core tracking features, with premium AI-powered route planning subscriptions available.\",\"category\":\"Free\"}}"}}]]}],"$L10"]}]]}],"p":false,"v":null},"c":"$Q11"},"h":{"r":"$L13","p":false,"v":null}},"m":"$undefined","G":["$14",[]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"qAaSmsKU6H18qehK3nafs"}
+0:{"P":null,"c":["",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/6fa30a242c791a24.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/c550c4587ab89b86.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":["$undefined",["$","script",null,{"id":"theme-init","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"id":"pwa-install-capture","dangerouslySetInnerHTML":{"__html":"\n              window.addEventListener('beforeinstallprompt', (e) => {\n                e.preventDefault();\n                window.deferredPrompt = e;\n              });\n            "}}],["$","$Lf",null,{"src":"https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js","strategy":"afterInteractive"}],["$","$Lf",null,{"id":"onesignal-init","strategy":"afterInteractive","dangerouslySetInnerHTML":{"__html":"\n              window.OneSignalDeferred = window.OneSignalDeferred || [];\n              const appId = \"\";\n              if (appId) {\n                OneSignalDeferred.push(function(OneSignal) {\n                  OneSignal.init({\n                    appId: appId,\n                    safari_web_id: \"\",\n                    serviceWorkerPath: 'notification-sw.js',\n                    serviceWorkerParam: {\n                      scope: '/notification-scope/'\n                    },\n                    notifyButton: { \n                      enable: true,\n                      offset: {\n                        bottom: \"80px\",\n                        right: \"16px\"\n                      }\n                    },\n                  });\n                });\n              }\n            "}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"WebApplication\",\"name\":\"Trayago\",\"url\":\"https://www.trayago.in\",\"description\":\"Intelligent Pan-India travel planner with AI-powered split journeys, confirmation predictions, and GPS live train tracking.\",\"applicationCategory\":\"TravelApplication\",\"operatingSystem\":\"All\",\"browserRequirements\":\"Requires HTML5, CSS3, and JavaScript.\",\"creator\":{\"@type\":\"Organization\",\"name\":\"Trayago\",\"url\":\"https://www.trayago.in\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"0\",\"priceCurrency\":\"INR\",\"description\":\"Free core tracking features, with premium AI-powered route planning subscriptions available.\",\"category\":\"Free\"}}"}}]]}],"$L10"]}]]}],"p":false,"v":null},"c":"$Q11"},"h":{"r":"$L13","p":false,"v":null}},"m":"$undefined","G":["$14",[]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"EmhjnCiV-aBcj9LFiuG09"}
 15:"GlobalErrorBoundary"
 16:I[41917,["8229","$3","4197","$4","7922","$5","9457","$6","7805","$7","9013","$8","9989","$9","1325","$a","7116","$b","5611","$c","5806","$d","7177","$e"],"$15"]
 17:"LanguageProvider"
@@ -62,7 +62,7 @@ f:I[42593,["8229","$3","4197","$4","7922","$5","9457","$6","7805","$7","9013","$
 22:I[72335,["8229","$3","4197","$4","7922","$5","9457","$6","7805","$7","9013","$8","9989","$9","1325","$a","7116","$b","5611","$c","5806","$d","7177","$e"],"default"]
 23:I[39861,["8229","$3","4197","$4","7922","$5","9457","$6","7805","$7","9013","$8","9989","$9","1325","$a","7116","$b","5611","$c","5806","$d","7177","$e"],"default"]
 24:I[57121,[],""]
-25:"static/chunks/app/error-70a4785d6f4c81ed.js"
+25:"static/chunks/app/error-a6eba8f442544a9d.js"
 26:I[17267,["4197","$4","8039","$25"],"default"]
 27:I[74581,[],""]
 28:I[27570,["8229","$3","4197","$4","7922","$5","9457","$6","7805","$7","9013","$8","9989","$9","1325","$a","7116","$b","5611","$c","5806","$d","7177","$e"],"default"]
@@ -86,10 +86,10 @@ f:I[42593,["8229","$3","4197","$4","7922","$5","9457","$6","7805","$7","9013","$
 46:"static/chunks/2867-bb4a6039edc0e757.js"
 47:"static/chunks/7317-2f74cd566cfb4914.js"
 48:"static/chunks/4817-9ea338768e97bdb6.js"
-49:"static/chunks/2986-1da765f998d7886f.js"
-4a:"static/chunks/5862-8076f4e14afae418.js"
-4b:"static/chunks/3501-81c610141a265b58.js"
-4c:"static/chunks/app/page-74a45d998bd86d77.js"
+49:"static/chunks/2986-39213727a73c8b7f.js"
+4a:"static/chunks/5862-0196904b36e788a7.js"
+4b:"static/chunks/3501-18344c9eb9d423f9.js"
+4c:"static/chunks/app/page-67836c9ca4dacde3.js"
 4d:I[74500,["8229","$3","3255","$44","4197","$4","7922","$5","9457","$6","7805","$7","9013","$8","9989","$9","1325","$a","1476","$45","2867","$46","7317","$47","4817","$48","5611","$c","2986","$49","5862","$4a","3501","$4b","5806","$d","8974","$4c"],"default"]
 4e:I[90484,[],"OutletBoundary"]
 2a:["$","li","/tracker",{"children":["$","$L29",null,{"href":"/tracker","className":"group w-full flex flex-col gap-0.5 bg-input/50 hover:bg-input border border-subtle hover:border-strong/40 rounded-2xl px-4 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary","children":[["$","span",null,{"className":"text-sm font-bold text-main group-hover:text-primary transition-colors","children":"Train Tracker"}],["$","span",null,{"className":"text-xs text-muted","children":"Follow a journey with a destination alarm"}]]}]}]
