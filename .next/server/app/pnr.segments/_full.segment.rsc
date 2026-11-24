@@ -10,11 +10,11 @@ a:"static/chunks/4495-3da4cf611d0559d2.js"
 b:"static/chunks/2972-b875baedf372b918.js"
 c:"static/chunks/1910-bd894f8d751b8257.js"
 d:"static/chunks/5494-9c499455d81ad133.js"
-e:"static/chunks/app/layout-55163401677ff1ee.js"
+e:"static/chunks/app/layout-d01e1fefc6a76ba1.js"
 f:I[80385,["7569","$3","5943","$4","1384","$5","9257","$6","9325","$7","3003","$8","2165","$9","4495","$a","2972","$b","1910","$c","5494","$d","7177","$e"],""]
 17:I[32499,[],"default",1]
+:HL["/_next/static/css/0863b7e46a3155cc.css","style"]
 :HL["/_next/static/css/6fa30a242c791a24.css","style"]
-:HL["/_next/static/css/267b0f4c55f1392a.css","style"]
 2:T5a3,
               (function() {
                 try {
@@ -47,7 +47,7 @@ f:I[80385,["7569","$3","5943","$4","1384","$5","9257","$6","9325","$7","3003","$
             13:X
 14:[["children",{"s":"__PAGE__","h":512,"d":{"r":"$L15","p":false,"v":null}}]]
 11:[["children",{"s":"pnr","h":512,"d":{"r":"$L12","p":false,"v":"$13"},"c":"$Q14"}]]
-0:{"P":null,"c":["","pnr"],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/6fa30a242c791a24.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/267b0f4c55f1392a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":["$undefined",["$","script",null,{"id":"theme-init","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"id":"pwa-install-capture","dangerouslySetInnerHTML":{"__html":"\n              window.addEventListener('beforeinstallprompt', (e) => {\n                e.preventDefault();\n                window.deferredPrompt = e;\n              });\n            "}}],["$","$Lf",null,{"src":"https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js","strategy":"afterInteractive"}],["$","$Lf",null,{"id":"onesignal-init","strategy":"afterInteractive","dangerouslySetInnerHTML":{"__html":"\n              window.OneSignalDeferred = window.OneSignalDeferred || [];\n              const appId = \"\";\n              if (appId) {\n                OneSignalDeferred.push(function(OneSignal) {\n                  OneSignal.init({\n                    appId: appId,\n                    safari_web_id: \"\",\n                    serviceWorkerPath: 'notification-sw.js',\n                    serviceWorkerParam: {\n                      scope: '/notification-scope/'\n                    },\n                    notifyButton: { \n                      enable: true,\n                      offset: {\n                        bottom: \"80px\",\n                        right: \"16px\"\n                      }\n                    },\n                  });\n                });\n              }\n            "}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"WebApplication\",\"name\":\"Trayago\",\"url\":\"https://www.trayago.in\",\"description\":\"Intelligent Pan-India travel planner with AI-powered split journeys, confirmation predictions, and GPS live train tracking.\",\"applicationCategory\":\"TravelApplication\",\"operatingSystem\":\"All\",\"browserRequirements\":\"Requires HTML5, CSS3, and JavaScript.\",\"creator\":{\"@type\":\"Organization\",\"name\":\"Trayago\",\"url\":\"https://www.trayago.in\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"0\",\"priceCurrency\":\"INR\",\"description\":\"Free core tracking features, with premium AI-powered route planning subscriptions available.\",\"category\":\"Free\"}}"}}]]}],"$L10"]}]]}],"p":false,"v":null},"c":"$Q11"},"h":{"r":"$L16","p":false,"v":null}},"m":"$undefined","G":["$17",[]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DKpUa7gAFrQCIO_iD30zj"}
+0:{"P":null,"c":["","pnr"],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/0863b7e46a3155cc.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/6fa30a242c791a24.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":["$undefined",["$","script",null,{"id":"theme-init","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","script",null,{"id":"pwa-install-capture","dangerouslySetInnerHTML":{"__html":"\n              window.addEventListener('beforeinstallprompt', (e) => {\n                e.preventDefault();\n                window.deferredPrompt = e;\n              });\n            "}}],["$","$Lf",null,{"src":"https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js","strategy":"afterInteractive"}],["$","$Lf",null,{"id":"onesignal-init","strategy":"afterInteractive","dangerouslySetInnerHTML":{"__html":"\n              window.OneSignalDeferred = window.OneSignalDeferred || [];\n              const appId = \"\";\n              if (appId) {\n                OneSignalDeferred.push(function(OneSignal) {\n                  OneSignal.init({\n                    appId: appId,\n                    safari_web_id: \"\",\n                    serviceWorkerPath: 'notification-sw.js',\n                    serviceWorkerParam: {\n                      scope: '/notification-scope/'\n                    },\n                    notifyButton: { \n                      enable: true,\n                      offset: {\n                        bottom: \"80px\",\n                        right: \"16px\"\n                      }\n                    },\n                  });\n                });\n              }\n            "}}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"WebApplication\",\"name\":\"Trayago\",\"url\":\"https://www.trayago.in\",\"description\":\"Intelligent Pan-India travel planner with AI-powered split journeys, confirmation predictions, and GPS live train tracking.\",\"applicationCategory\":\"TravelApplication\",\"operatingSystem\":\"All\",\"browserRequirements\":\"Requires HTML5, CSS3, and JavaScript.\",\"creator\":{\"@type\":\"Organization\",\"name\":\"Trayago\",\"url\":\"https://www.trayago.in\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"0\",\"priceCurrency\":\"INR\",\"description\":\"Free core tracking features, with premium AI-powered route planning subscriptions available.\",\"category\":\"Free\"}}"}}]]}],"$L10"]}]]}],"p":false,"v":null},"c":"$Q11"},"h":{"r":"$L16","p":false,"v":null}},"m":"$undefined","G":["$17",[]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Nx9_LH8VUxFjquCkz_soH"}
 18:"GlobalErrorBoundary"
 19:I[46469,["7569","$3","5943","$4","1384","$5","9257","$6","9325","$7","3003","$8","2165","$9","4495","$a","2972","$b","1910","$c","5494","$d","7177","$e"],"$18"]
 1a:"LanguageProvider"
@@ -64,7 +64,7 @@ f:I[80385,["7569","$3","5943","$4","1384","$5","9257","$6","9325","$7","3003","$
 25:I[76065,["7569","$3","5943","$4","1384","$5","9257","$6","9325","$7","3003","$8","2165","$9","4495","$a","2972","$b","1910","$c","5494","$d","7177","$e"],"default"]
 26:I[10221,["7569","$3","5943","$4","1384","$5","9257","$6","9325","$7","3003","$8","2165","$9","4495","$a","2972","$b","1910","$c","5494","$d","7177","$e"],"default"]
 27:I[64673,[],""]
-28:"static/chunks/app/error-020bef4ae24fb00f.js"
+28:"static/chunks/app/error-35c46571428a1c8e.js"
 29:I[17595,["5943","$4","8039","$28"],"default"]
 2a:I[11765,[],""]
 2b:I[60018,["7569","$3","5943","$4","1384","$5","9257","$6","9325","$7","3003","$8","2165","$9","4495","$a","2972","$b","1910","$c","5494","$d","7177","$e"],"default"]
@@ -74,8 +74,8 @@ f:I[80385,["7569","$3","5943","$4","1384","$5","9257","$6","9325","$7","3003","$
 2f:"static/chunks/6892-adcc66c3d94670fe.js"
 30:"static/chunks/2338-20fca905e2a5df4a.js"
 31:"static/chunks/7646-a675c94d0ca5e4e6.js"
-32:"static/chunks/4244-0255c80380f7ff05.js"
-33:"static/chunks/app/pnr/page-acd6c96ba1d5ca49.js"
+32:"static/chunks/4244-0d3e28612e137f4f.js"
+33:"static/chunks/app/pnr/page-4af0cb3fb9db8ac0.js"
 34:I[75236,["5943","$4","1384","$5","9257","$6","9325","$7","3003","$8","6607","$2c","2605","$2d","7949","$2e","6892","$2f","1910","$c","2338","$30","7646","$31","4244","$32","8905","$33"],""]
 43:"ViewportBoundary"
 44:I[67284,[],"$43"]
