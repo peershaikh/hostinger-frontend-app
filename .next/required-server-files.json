@@ -4,7 +4,7 @@
     "env": {
       "_sentryRewriteFramesDistDir": ".next",
       "_sentryRewriteFramesAssetPrefixPath": "",
-      "_sentryRelease": "3c92961953c19b3c0965b979295cce73001b7cc7",
+      "_sentryRelease": "8bec6460e910f7b7ac58f2bcc4287c3ad9630916",
       "_sentryHasPagesRouter": "false"
     },
     "typescript": {
@@ -116,7 +116,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "D:\\Data Tarine\\trine-ct04b-frontend\\",
+    "outputFileTracingRoot": "D:\\Data Tarine\\trine-ct05b-frontend\\",
     "enablePrerenderSourceMaps": true,
     "cacheComponents": false,
     "cacheLife": {
@@ -350,7 +350,7 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.mjs",
     "turbopack": {
-      "root": "D:\\Data Tarine\\trine-ct04b-frontend\\"
+      "root": "D:\\Data Tarine\\trine-ct05b-frontend\\"
     },
     "serverExternalPackages": [
       "amqplib",
@@ -376,7 +376,7 @@
       "redis",
       "tedious"
     ],
-    "repoRoot": "D:\\Data Tarine\\trine-ct04b-frontend",
+    "repoRoot": "D:\\Data Tarine\\trine-ct05b-frontend",
     "distDirRoot": ".next",
     "supportsImmutableAssets": false,
     "_originalRewrites": {
@@ -417,7 +417,7 @@
       }
     ]
   },
-  "appDir": "D:\\Data Tarine\\trine-ct04b-frontend\\web",
+  "appDir": "D:\\Data Tarine\\trine-ct05b-frontend\\web",
   "relativeAppDir": "web",
   "files": [
     ".next\\package.json",
