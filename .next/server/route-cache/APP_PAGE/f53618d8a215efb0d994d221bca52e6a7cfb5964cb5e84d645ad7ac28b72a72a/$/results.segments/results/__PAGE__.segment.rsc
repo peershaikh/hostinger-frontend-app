@@ -1,0 +1,26 @@
+2:"$Sreact.fragment"
+3:I[57121,[],""]
+4:I[74581,[],""]
+9:"static/chunks/app/results/page-f7650a5372e4a99f.js"
+a:I[44165,["7139","$9"],"default"]
+b:I[90484,[],"OutletBoundary"]
+c:"$Sreact.suspense"
+f:"ViewportBoundary"
+10:I[90484,[],"$f"]
+11:"MetadataBoundary"
+12:I[90484,[],"$11"]
+13:I[86869,[],"IconMark"]
+6:X
+6:C
+7:X
+8:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$2","c",{"children":[["$","$La",null,{}],null,["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]]}],"p":"$@e","v":null,"s":"$7"}}]]
+1:[["children",{"s":"results","h":64,"d":{"r":["$","$2","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L4",null,{}]}]]}],"p":"$@5","v":"$6","s":"$7"},"c":"$Q8"}]]
+0:{"t":{"t":{"s":"","h":16,"c":"$Q1"},"h":{"r":["$","$2","h",{"children":[null,["$","$L10",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=5"}],["$","meta","2",{"name":"theme-color","content":"#0a0a0f"}]]}],["$","$L12",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$c",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Search Results | Trayago"}],["$","meta","1",{"name":"description","content":"Find the fastest, smartest split journey train routes across India. Discover hidden connections, live availability, and AI-powered recommendations."}],["$","link","2",{"rel":"manifest","href":"/manifest.json?v=3"}],["$","meta","3",{"name":"keywords","content":"Indian railways, IRCTC, train tickets, split journey, train routes, live train status, PNR status"}],["$","meta","4",{"name":"robots","content":"noindex, nofollow"}],["$","meta","5",{"name":"mobile-web-app-capable","content":"yes"}],["$","meta","6",{"name":"apple-mobile-web-app-title","content":"Trayago"}],["$","meta","7",{"name":"apple-mobile-web-app-status-bar-style","content":"black-translucent"}],["$","meta","8",{"property":"og:title","content":"Trayago - Smart Train Travel"}],["$","meta","9",{"property":"og:description","content":"Never miss a train again. Discover hidden AI-powered split journeys when direct trains are full."}],["$","meta","10",{"property":"og:site_name","content":"Trayago"}],["$","meta","11",{"property":"og:locale","content":"en_IN"}],["$","meta","12",{"property":"og:image","content":"https://www.trayago.in/og-image.png"}],["$","meta","13",{"property":"og:image:width","content":"1200"}],["$","meta","14",{"property":"og:image:height","content":"630"}],["$","meta","15",{"property":"og:image:alt","content":"Trayago Preview"}],["$","meta","16",{"property":"og:type","content":"website"}],["$","meta","17",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","18",{"name":"twitter:site","content":"@trayago"}],["$","meta","19",{"name":"twitter:creator","content":"@trayago"}],["$","meta","20",{"name":"twitter:title","content":"Trayago - Smart Train Travel"}],["$","meta","21",{"name":"twitter:description","content":"Discover hidden AI-powered split journeys when direct trains are full."}],["$","meta","22",{"name":"twitter:image","content":"https://www.trayago.in/og-image.png"}],["$","link","23",{"rel":"icon","href":"/favicon.ico?603d046c9a6fdfbb","type":"image/x-icon","sizes":"16x16"}],["$","link","24",{"rel":"icon","href":"/favicon.svg?v=2","type":"image/svg+xml"}],["$","link","25",{"rel":"icon","href":"/icon-192.png?v=2","sizes":"192x192","type":"image/png"}],["$","link","26",{"rel":"icon","href":"/icon-512.png?v=2","sizes":"512x512","type":"image/png"}],["$","link","27",{"rel":"apple-touch-icon","href":"/icons/apple-touch-icon.png?v=2","sizes":"180x180","type":"image/png"}],["$","link","28",{"rel":"apple-touch-icon","href":"/icon-192.png?v=2","sizes":"192x192","type":"image/png"}],["$","$L13","29",{}]]}]}],null]}],null]}],"p":"$@14","v":null,"s":"$7"}},"a":"$@15","u":"$@16","b":"r6A3aC5TvAllHlq4w8T7z"}
+d:null
+16:true
+7:300
+7:C
+15:0
+5:"$undefined"
+14:"$undefined"
+e:"$undefined"
